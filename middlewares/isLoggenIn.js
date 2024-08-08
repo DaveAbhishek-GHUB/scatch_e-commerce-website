@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const userModel = require("../models/user-model");
+const alert = require("alert-node");
 
 module.exports = async function (req, res, next) {
   if (!req.cookies.token) {
@@ -13,6 +14,7 @@ module.exports = async function (req, res, next) {
     req.user = user;
     next();
   } catch (err) {
+    alert("you need to login first");
     res.redirect("/");
   }
 };
